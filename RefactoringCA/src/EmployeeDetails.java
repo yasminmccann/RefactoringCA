@@ -352,7 +352,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	// display search by surname dialog
 	private void displaySearchBySurnameDialog() {
 		if (isSomeoneToDisplay())
-			new SearchBySurnameDialog(EmployeeDetails.this);
+			new SearchBySurnameDialog();
 	}// end displaySearchBySurnameDialog
 
 	// find byte start in file for first active record
@@ -1045,7 +1045,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				deleteRecord();
 		} else if (e.getSource() == searchBySurname) {
 			if (checkInput() && !checkForChanges())
-				new SearchBySurnameDialog(EmployeeDetails.this);
+				new SearchBySurnameDialog();
 		}
 	}// end actionPerformed
 
