@@ -39,7 +39,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		setContentPane(scrollPane);
 		
 		getRootPane().setDefaultButton(save);
-		
+ 		
 		setSize(500, 370);
 		setLocation(350, 250);
 		setVisible(true);

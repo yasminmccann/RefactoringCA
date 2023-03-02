@@ -40,7 +40,7 @@ public class SearchByIdDialog extends SearchBy {
 		setSize(500, 190);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end SearchByIdDialog
+	}// end SearchByIdDialog 
 	
 //	// initialize search container
 //	public Container searchPane() {

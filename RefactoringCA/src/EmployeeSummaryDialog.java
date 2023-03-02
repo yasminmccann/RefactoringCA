@@ -40,9 +40,9 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 
 		JScrollPane scrollPane = new JScrollPane(summaryPane());
 		setContentPane(scrollPane);
-
+		
 		setSize(850, 500);
-		setLocation(350, 250);
+		setLocation(350, 250); 
 		setVisible(true);
 
 	}
@@ -68,8 +68,37 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
 		}// end for
-		// construnct table and choose table model for each column
-		tableModel = new DefaultTableModel() {
+		
+		//Create a vector of vectors from the Vector of Objects
+		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
+		for(int i = 0; i < allEmployees.size(); i++) {
+			Employee employee = (Employee) allEmployees.get(i);
+			Vector<Object> rowVector = new Vector<Object>();
+			rowVector.addElement(employee.getEmployeeId());
+			rowVector.addElement(employee.getPps());
+			rowVector.addElement(employee.getSurname());
+			rowVector.addElement(employee.getFirstName());
+			rowVector.addElement(employee.getGender());
+			rowVector.addElement(employee.getDepartment());
+			rowVector.addElement(employee.getSalary());
+			rowVector.addElement(employee.getFullTime());
+			dataVector.addElement(rowVector);
+		}
+		
+		Vector<String> columnNames = new Vector<String>();
+		columnNames.addElement("ID");
+		columnNames.addElement("PPS Number");
+		columnNames.addElement("Surname");
+		columnNames.addElement("First Name");
+		columnNames.addElement("Gender");
+		columnNames.addElement("Department");
+		columnNames.addElement("Salary");
+		columnNames.addElement("Full Time");
+		
+		
+		// construct table and choose table model for each column
+		tableModel = new DefaultTableModel(dataVector, columnNames){
+			
 			public Class getColumnClass(int c) {
 				switch (c) {
 				case 0:
@@ -120,8 +149,9 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	}
 	// format for salary column
 	static class DecimalFormatRenderer extends DefaultTableCellRenderer {
-		 private static final DecimalFormat format = new DecimalFormat(
+		 private static final DecimalFormat inactiveFormat = new DecimalFormat(
 		 "\u20ac ###,###,##0.00" );
+		 
 
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
@@ -130,7 +160,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 			 JLabel label = (JLabel) c;
 			 label.setHorizontalAlignment(JLabel.RIGHT);
 			 // format salary column
-			value = format.format((Number) value);
+			value = inactiveFormat.format((Number) value);
 
 			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}// end getTableCellRendererComponent

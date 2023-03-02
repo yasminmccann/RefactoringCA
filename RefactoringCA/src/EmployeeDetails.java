@@ -51,7 +51,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class EmployeeDetails extends JFrame implements ActionListener, ItemListener, DocumentListener, WindowListener {
 	// decimal format for inactive currency text field
-	private static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
+	private static final DecimalFormat inactiveFormat = new DecimalFormat("\u20ac ###,###,##0.00");
 	// decimal format for active currency text field
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	// hold object start position in file
@@ -149,52 +149,53 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
 		searchPanel.add(new JLabel("Search by ID:"), "growx, pushx");
-		searchPanel.add(searchByIdField = new JTextField(20), "width 200:200:200, growx, pushx");
+		searchPanel.add(searchByIdField = new JTextField(20), "width 200, growx, pushx");
 		searchByIdField.addActionListener(this);
 		searchByIdField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(searchId = new JButton("Go"),
-				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
+				"width 35, height 20, growx, pushx, wrap");
 		searchId.addActionListener(this);
 		searchId.setToolTipText("Search Employee By ID");
 
 		searchPanel.add(new JLabel("Search by Surname:"), "growx, pushx");
-		searchPanel.add(searchBySurnameField = new JTextField(20), "width 200:200:200, growx, pushx");
+		searchPanel.add(searchBySurnameField = new JTextField(20), "width 200, growx, pushx");
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(
-				searchSurname = new JButton("Go"),"width 35:35:35, height 20:20:20, growx, pushx, wrap");
+				searchSurname = new JButton("Go"),"width 35, height 20, growx, pushx, wrap");
 		searchSurname.addActionListener(this);
 		searchSurname.setToolTipText("Search Employee By Surname");
 
 		return searchPanel;
 	}// end searchPanel
-
+ 
 	// initialize navigation panel
 	private JPanel navigPanel() {
 		JPanel navigPanel = new JPanel();
 
 		navigPanel.setBorder(BorderFactory.createTitledBorder("Navigate"));
 		navigPanel.add(first = new JButton(new ImageIcon(
-				new ImageIcon("first.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		first.setPreferredSize(new Dimension(17, 17));
+				new ImageIcon("first.png").getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH))));
+		first.setPreferredSize(new Dimension(20, 20));
 		first.addActionListener(this);
 		first.setToolTipText("Display first Record");
+		
+		navigPanel.add(next = new JButton(new ImageIcon(
+				new ImageIcon("next.png").getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH))));
+		next.setPreferredSize(new Dimension(20, 20));
+		next.addActionListener(this);
+		next.setToolTipText("Display next Record");
 
 		navigPanel.add(previous = new JButton(new ImageIcon(new ImageIcon("prev.png").getImage()
-				.getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		previous.setPreferredSize(new Dimension(17, 17));
+				.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH))));
+		previous.setPreferredSize(new Dimension(20, 20));
 		previous.addActionListener(this);
-		previous.setToolTipText("Display next Record");
+		previous.setToolTipText("Display previous Record");
 
-		navigPanel.add(next = new JButton(new ImageIcon(
-				new ImageIcon("next.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		next.setPreferredSize(new Dimension(17, 17));
-		next.addActionListener(this);
-		next.setToolTipText("Display previous Record");
 
 		navigPanel.add(last = new JButton(new ImageIcon(
-				new ImageIcon("last.png").getImage().getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
-		last.setPreferredSize(new Dimension(17, 17));
+				new ImageIcon("last.png").getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH))));
+		last.setPreferredSize(new Dimension(20, 20));
 		last.addActionListener(this);
 		last.setToolTipText("Display last Record");
 
@@ -281,7 +282,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				empDetails.getComponent(i).setEnabled(false);
 				((JComboBox<String>) empDetails.getComponent(i)).addItemListener(this);
 				((JComboBox<String>) empDetails.getComponent(i)).setRenderer(new DefaultListCellRenderer() {
-					// set foregroung to combo boxes
+					// set foreground to combo boxes
 					public void paint(Graphics g) {
 						setForeground(new Color(65, 65, 65));
 						super.paint(g);
@@ -326,7 +327,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			firstNameField.setText(thisEmployee.getFirstName());
 			genderCombo.setSelectedIndex(countGender);
 			departmentCombo.setSelectedIndex(countDep);
-			salaryField.setText(format.format(thisEmployee.getSalary()));
+			salaryField.setText(inactiveFormat.format(thisEmployee.getSalary()));
 			// set corresponding full time combo box value to current employee
 			if (thisEmployee.getFullTime() == true)
 				fullTimeCombo.setSelectedIndex(1);

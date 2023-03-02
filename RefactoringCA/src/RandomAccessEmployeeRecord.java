@@ -62,7 +62,7 @@ public class RandomAccessEmployeeRecord extends Employee
       writeName(file,getDepartment());
       file.writeDouble( getSalary() );
       file.writeBoolean(getFullTime());
-   } // end write
+   } // end write 
 
    // Ensure that string is correct length
    private void writeName( RandomAccessFile file, String name )
