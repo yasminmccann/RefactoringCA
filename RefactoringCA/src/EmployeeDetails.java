@@ -85,6 +85,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	String[] department = { "", "Administration", "Production", "Transport", "Management" };
 	// full time combo box values
 	String[] fullTime = { "", "Yes", "No" };
+	static int returnVal;
 
 	// initialize menu bar
 	private JMenuBar menuBar() {
@@ -353,7 +354,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	// display search by surname dialog
 	private void displaySearchBySurnameDialog() {
 		if (isSomeoneToDisplay())
-			new SearchBySurnameDialog();
+			new SearchBySurnameDialog(EmployeeDetails.this);
 	}// end displaySearchBySurnameDialog
 
 	// find byte start in file for first active record
@@ -577,14 +578,14 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}// end deleteDecord
 
 	// create vector of vectors with all Employee details
-	private Vector<Object> getAllEmloyees() {
+	private Vector<Vector<Object>> getAllEmloyees() {
 		// vector of Employee objects
-		Vector<Object> allEmployee = new Vector<Object>();
-		Vector<Object> empDetails;// vector of each employee details
+		Vector<Vector<Object>> allEmployee = new Vector<Vector<Object>>();
+		Vector<Object> empDetails;
 		long byteStart = currentByteStart;
 		int firstId;
 
-		firstRecord();// look for first record
+		firstRecord();// look for first record 
 		firstId = currentEmployee.getEmployeeId();
 		// loop until all Employees are added to vector
 		do {
@@ -1046,7 +1047,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				deleteRecord();
 		} else if (e.getSource() == searchBySurname) {
 			if (checkInput() && !checkForChanges())
-				new SearchBySurnameDialog();
+				new SearchBySurnameDialog(EmployeeDetails.this);
 		}
 	}// end actionPerformed
 

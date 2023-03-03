@@ -28,10 +28,11 @@ import net.miginfocom.swing.MigLayout;
 
 public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
-	Vector<Object> allEmployees;
+	//Vector<Object> allEmployees;
+	Vector<Vector<Object>> allEmployees;
 	JButton back;
 	
-	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
+	public EmployeeSummaryDialog(Vector<Vector<Object>> allEmployees) {
 		setTitle("Employee Summary");
 		setModal(true);
 		this.allEmployees = allEmployees;
@@ -68,36 +69,9 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
 		}// end for
-		
-		//Create a vector of vectors from the Vector of Objects
-		Vector<Vector<Object>> dataVector = new Vector<Vector<Object>>();
-		for(int i = 0; i < allEmployees.size(); i++) {
-			Employee employee = (Employee) allEmployees.get(i);
-			Vector<Object> rowVector = new Vector<Object>();
-			rowVector.addElement(employee.getEmployeeId());
-			rowVector.addElement(employee.getPps());
-			rowVector.addElement(employee.getSurname());
-			rowVector.addElement(employee.getFirstName());
-			rowVector.addElement(employee.getGender());
-			rowVector.addElement(employee.getDepartment());
-			rowVector.addElement(employee.getSalary());
-			rowVector.addElement(employee.getFullTime());
-			dataVector.addElement(rowVector);
-		}
-		
-		Vector<String> columnNames = new Vector<String>();
-		columnNames.addElement("ID");
-		columnNames.addElement("PPS Number");
-		columnNames.addElement("Surname");
-		columnNames.addElement("First Name");
-		columnNames.addElement("Gender");
-		columnNames.addElement("Department");
-		columnNames.addElement("Salary");
-		columnNames.addElement("Full Time");
-		
-		
 		// construct table and choose table model for each column
-		tableModel = new DefaultTableModel(dataVector, columnNames){
+		//createTableModel();
+		tableModel = new DefaultTableModel(this.allEmployees, header){
 			
 			public Class getColumnClass(int c) {
 				switch (c) {
