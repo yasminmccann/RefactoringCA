@@ -88,19 +88,19 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		
 		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
 		// loop through all panel components and add fonts and listeners
-		for (int i = 0; i < empDetails.getComponentCount(); i++) {
-			empDetails.getComponent(i).setFont(this.parent.font1);
-			if (empDetails.getComponent(i) instanceof JComboBox) {
-				empDetails.getComponent(i).setBackground(Color.WHITE);
-			}// end if
-			else if(empDetails.getComponent(i) instanceof JTextField){
-				field = (JTextField) empDetails.getComponent(i);
-				if(field == ppsField)
-					field.setDocument(new JTextFieldLimit(9));
-				else
-				field.setDocument(new JTextFieldLimit(20));
-			}// end else if
-		}// end for
+//		for (int i = 0; i < empDetails.getComponentCount(); i++) {
+//			empDetails.getComponent(i).setFont(this.parent.font1);
+//			if (empDetails.getComponent(i) instanceof JComboBox) {
+//				empDetails.getComponent(i).setBackground(Color.WHITE);
+//			}// end if
+//			else if(empDetails.getComponent(i) instanceof JTextField){
+//				field = (JTextField) empDetails.getComponent(i);
+//				if(field == ppsField)
+//					field.setDocument(new JTextFieldLimit(9));
+//				else
+//				field.setDocument(new JTextFieldLimit(20));
+//			}// end else if
+//		}// end for
 		idField.setText(Integer.toString(this.parent.getNextFreeId()));
 		return empDetails;
 	}

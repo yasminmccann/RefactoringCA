@@ -50,9 +50,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import net.miginfocom.swing.MigLayout;
 
 public class EmployeeDetails extends JFrame implements ActionListener, ItemListener, DocumentListener, WindowListener {
-	// decimal format for inactive currency text field
 	private static final DecimalFormat inactiveFormat = new DecimalFormat("\u20ac ###,###,##0.00");
-	// decimal format for active currency text field
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	// hold object start position in file
 	private long currentByteStart = 0;

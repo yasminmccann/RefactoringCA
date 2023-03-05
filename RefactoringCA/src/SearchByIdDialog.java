@@ -27,7 +27,7 @@ public class SearchByIdDialog extends SearchBy {
 	JTextField searchField;
 	// constructor for SearchByIdDialog 
 	protected SearchByIdDialog(EmployeeDetails parent) {
-		setTitle("Search by Surname");
+		setTitle("Search by Id");
 		setModal(true);
 		this.parent = parent;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -70,5 +70,4 @@ public class SearchByIdDialog extends SearchBy {
 
 		return searchPanel;
 	}// end searchPane
-
 }// end class searchByIdDialog

@@ -23,7 +23,7 @@ public abstract class SearchBy extends JDialog implements ActionListener {
 			actionPerformed(null);
 			//System.out.println("House is built.");
 		}
-		
+//		
 		//Template methods 
 		   //protected abstract void SearchByIdDialog();  
 		   //protected abstract void SearchBySurnameDialog(); 

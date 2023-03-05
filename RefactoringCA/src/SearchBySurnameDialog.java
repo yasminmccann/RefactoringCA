@@ -68,5 +68,4 @@ public class SearchBySurnameDialog extends SearchBy {
 
 			return searchPanel;
 		}// end searchPane
-
 }// end class SearchBySurnameDialog
